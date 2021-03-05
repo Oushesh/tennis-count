@@ -16,3 +16,4 @@
       11. https://medium.com/bakken-b%C3%A6ck/improving-your-tennis-game-with-computer-vision-863969743024 for Tracking OpenPose
       12. Positions of players around the net: https://github.com/sethah/deeptennis
       13. The stuffs here: https://towardsdatascience.com/ball-detection-with-computer-vision-ai-in-sports-f9ef743e0ef1
+      14. This one is really awesome: https://github.com/vishaltiwari/bmvc-tennis-analytics
