@@ -17,3 +17,5 @@
       12. Positions of players around the net: https://github.com/sethah/deeptennis
       13. The stuffs here: https://towardsdatascience.com/ball-detection-with-computer-vision-ai-in-sports-f9ef743e0ef1
       14. This one is really awesome: https://github.com/vishaltiwari/bmvc-tennis-analytics
+      15. https://github.com/vishaltiwari/bmvc-tennis-analytics
+      16. 
