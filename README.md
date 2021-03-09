@@ -28,6 +28,8 @@
      * Track Balls on Tennis Videos --> (x,y) pos of moving ball in each frame
      * Improved detection using Focal Lens and ResNet extension of TrackNet
      * Next: build a classical filter to optimise the trajectory prediction.
-#### Report: 
+     * How can I reduce the time complexity of detection?
+       * Instead of running inference on each frame: propagate the dec
+#### Report:
      * https://leimao.github.io/blog/Focal-Loss-Explained/
      * Think what to write in the report

@@ -19,8 +19,6 @@
     # https://github.com/Chang-Chia-Chi/TrackNet-Badminton-Tracking-tensorflow2
     # Test: python predict.py
 
-
-
 ### Fourth is to test this one and rewrite it here:
     # Tennis Ball Tracking: https://researchweb.iiit.ac.in/~vishal.tiwari/ball_tracking_BTV.html
       # F Yan Data Association Algorithm --> Ball Candidate extraction & tracklet generation
