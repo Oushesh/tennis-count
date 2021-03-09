@@ -12,10 +12,18 @@
 
       # Download the file back to test_detection
       # Download the original input file as well.
+      # Need to use tensorflow GPU: otherwise bug with tensorflow.keras backend.
 
 ### Third is test the code onto:
 ### Fourth is to test this one and rewrite it here:
     # Tennis Ball Tracking: https://researchweb.iiit.ac.in/~vishal.tiwari/ball_tracking_BTV.html
       # F Yan Data Association Algorithm --> Ball Candidate extraction & tracklet generation
       #
+      # Maybe I can use this algorithm to track my hands for the hand interface for my prototype.
+      # The hand tracker here.
 
+### Target Today: TODO: https://github.com/Chang-Chia-Chi/TrackNet-Badminton-Tracking-tensorflow2
+    Test this and run on Google Research Collab. (TODO:tonight)
+    Then test the other stuffs. Then perform multi-object tracking.
+
+###

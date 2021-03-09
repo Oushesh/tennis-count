@@ -19,3 +19,7 @@
       14. This one is really awesome: https://github.com/vishaltiwari/bmvc-tennis-analytics
       15. https://github.com/vishaltiwari/bmvc-tennis-analytics
       16. Research Engineer: Epic Games and Cubic Motion: https://gamejobs.co/Research-Engineer-at-Epic-Games
+
+
+#### How did I setup the problem?
+     * https://medium.com/deep-learning-turkey/google-colab-free-gpu-tutorial-e113627b9f5d
