@@ -23,3 +23,6 @@
 
 #### How did I setup the problem?
      * https://medium.com/deep-learning-turkey/google-colab-free-gpu-tutorial-e113627b9f5d
+
+#### Report stuffs: https://leimao.github.io/blog/Focal-Loss-Explained/
+     * Think what to write in the report
