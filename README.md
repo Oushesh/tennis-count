@@ -24,5 +24,10 @@
 #### How did I setup the problem?
      * https://medium.com/deep-learning-turkey/google-colab-free-gpu-tutorial-e113627b9f5d
 
-#### Report stuffs: https://leimao.github.io/blog/Focal-Loss-Explained/
+#### Milestones
+     * Track Balls on Tennis Videos --> (x,y) pos of moving ball in each frame
+     * Improved detection using Focal Lens and ResNet extension of TrackNet
+     * Next: build a classical filter to optimise the trajectory prediction.
+#### Report: 
+     * https://leimao.github.io/blog/Focal-Loss-Explained/
      * Think what to write in the report
