@@ -1,0 +1,3 @@
+[submodule "TrackNet-Badminton-Tracking-tensorflow2"]
+	path = TrackNet-Badminton-Tracking-tensorflow2
+	url = https://github.com/Chang-Chia-Chi/TrackNet-Badminton-Tracking-tensorflow2.git
