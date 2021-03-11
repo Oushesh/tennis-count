@@ -32,4 +32,5 @@
        * Instead of running inference on each frame: propagate the dec
 #### Report:
      * https://leimao.github.io/blog/Focal-Loss-Explained/
-     * Think what to write in the report
+     * Think what to write in the report --> Mention advantage Focal Loss,  ResNet and RetinaNet.
+     * Mention why Tracking helps more      
