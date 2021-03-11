@@ -22,11 +22,15 @@
 ### Fourth is to test this one and rewrite it here:
     # Tennis Ball Tracking: https://researchweb.iiit.ac.in/~vishal.tiwari/ball_tracking_BTV.html
       # F Yan Data Association Algorithm --> Ball Candidate extraction & tracklet generation
-      #
+      # 
       # Maybe I can use this algorithm to track my hands for the hand interface for my prototype.
       # The hand tracker here.
 
-### Target Today: TODO: https://github.com/Chang-Chia-Chi/TrackNet-Badminton-Tracking-tensorflow2
-    Test this and run on Google Research Collab. (TODO:tonight)
+### DONE: 
+    * Testing of TrackNet
+    * Testing of Tensorflow TrackNet with ResNet + Focal Loss Function: https://github.com/Chang-Chia-Chi/TrackNet-Badminton-Tracking-tensorflow2
+    * 
+### Target Today: https://github.com/Chang-Chia-Chi/TrackNet-Badminton-Tracking-tensorflow2
     Then test the other stuffs. Then perform multi-object tracking.
-###
+
+  
