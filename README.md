@@ -33,6 +33,7 @@
        ** TODO: Handle the case where we dont see the players: 
        ** Run the detector for court detection then eliminate the wrong frames.
        ** Remove the Frames: 
+       ** Tennis Court detection: https://github.com/gchlebus/tennis-court-detection
 #### Report:
      * https://leimao.github.io/blog/Focal-Loss-Explained/
      * Think what to write in the report --> Mention advantage Focal Loss,  ResNet and RetinaNet.
