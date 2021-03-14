@@ -31,9 +31,10 @@
      * How can I reduce the time complexity of detection?
        * Instead of running inference on each frame: propagate the dec
        ** TODO: Handle the case where we dont see the players: 
-       ** Run the detector for court detection then eliminate the wrong frames.
-       ** Remove the Frames: 
-       ** Tennis Court detection: https://github.com/gchlebus/tennis-court-detection
+       ** DONE: Run the detector for court detection then eliminate the wrong frames.
+       ** DONE: Remove the Frames: 
+       ** DONE: Tennis Court detection: https://github.com/gchlebus/tennis-court-detection
+       ** Test algorithm to determine bounce from 2D Coordinates.
 #### Report:
      * https://leimao.github.io/blog/Focal-Loss-Explained/
      * Think what to write in the report --> Mention advantage Focal Loss,  ResNet and RetinaNet.
