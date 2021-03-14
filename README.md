@@ -23,19 +23,21 @@
 
 #### How did I setup the problem?
      * https://medium.com/deep-learning-turkey/google-colab-free-gpu-tutorial-e113627b9f5d
+     * Game: 
 
 #### Milestones
-     * Track Balls on Tennis Videos --> (x,y) pos of moving ball in each frame
-     * Improved detection using Focal Lens and ResNet extension of TrackNet
+     * Track Balls on Tennis Videos --> (x,y, frame) pos of moving ball in each frame.
+     * Improved detection using Focal Lens and ResNet extension of TrackNet.
      * Next: build a classical filter to optimise the trajectory prediction.
      * How can I reduce the time complexity of detection?
        * Instead of running inference on each frame: propagate the dec
        ** TODO: Handle the case where we dont see the players: 
        ** DONE: Run the detector for court detection then eliminate the wrong frames.
-       ** DONE: Remove the Frames: 
+       ** TODO: Steps to perform bounce. (Test this here: )
        ** DONE: Tennis Court detection: https://github.com/gchlebus/tennis-court-detection
        ** Test algorithm to determine bounce from 2D Coordinates.
+       ** 
 #### Report:
      * https://leimao.github.io/blog/Focal-Loss-Explained/
      * Think what to write in the report --> Mention advantage Focal Loss,  ResNet and RetinaNet.
-     * Mention why Tracking helps more      
+     * Mention why Tracking steps more      
