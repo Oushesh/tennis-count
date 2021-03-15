@@ -8,15 +8,39 @@ import time
 import subprocess as sp
 import multiprocessing as mp
 from os import remove
+import court_detector
+from court_detector import detector
 
+def combine_output_files(num_processes):
+    # Create a list of output files and store the file names in a txt file
+    list_of_output_files = ["output_{}.mp4".format(i) for i in range(num_processes)]
+    with open("list_of_output_files.txt", "w") as f:
+        for t in list_of_output_files:
+            f.write("file {} \n".format(t))
+
+    # use ffmpeg to combine the video output files
+    ffmpeg_cmd = "ffmpeg -y -loglevel error -f concat -safe 0 -i list_of_output_files.txt -vcodec copy " + output_file_name
+    sp.Popen(ffmpeg_cmd, shell=True).wait()
+
+    '''
+    # Remove the temperory output files
+    for f in list_of_output_files:
+        remove(f)
+    remove("list_of_output_files.txt")
+    '''
 def process_video_multiprocessing(group_number):
     # Read video file
-    cap = cv.VideoCapture(file_name)
-    cap.set(cv.CAP_PROP_POS_FRAMES, frame_jump_unit * group_number)
-
+    cap = cv.VideoCapture(video_path)
     # get height, width and frame count of the video
     width, height = (int(cap.get(cv.CAP_PROP_FRAME_WIDTH)),int(cap.get(cv.CAP_PROP_FRAME_HEIGHT)))
-    no_of_frames = int(cap.get(cv.CAP_PROP_FRAME_COUNT))
+    frame_count  = int(cap.get(cv.CAP_PROP_FRAME_COUNT))
+
+    num_processes = mp.cpu_count()
+    #print("Number of CPU: " + str(num_processes))
+    frame_jump_unit = frame_count // num_processes
+
+    cap.set(cv.CAP_PROP_POS_FRAMES, frame_jump_unit*group_number)
+
     fps = int(cap.get(cv.CAP_PROP_FPS))
     proc_frames = 0
 
@@ -33,16 +57,9 @@ def process_video_multiprocessing(group_number):
 
             im = frame
             #Perorm Tennis court detection on each frame
-            #TODO: 
-            _, bboxes = detectum.process_frame(im, THRESHOLD)
-
-            # Loop through list (if empty this will be skipped) and overlay green bboxes
-            for i in bboxes:
-                cv.rectangle(im, (i[0], i[1]), (i[2], i[3]), (0, 255, 0), 3)
-
-            # write the frame
-            out.write(im)
-
+            #TODO: call the court detector here.
+            out = detector(im)
+            cv2.imwrite("outptut.jpg",out)
             proc_frames += 1
     except:
         # Release resources
@@ -57,7 +74,7 @@ def multi_process():
     print("Video processing using {} processes...".format(num_processes))
     start_time = time.time()
 
-    # Paralle the execution of a function across multiple input values
+    # Parallelise the execution of a function across multiple input values
     p = mp.Pool(num_processes)
     p.map(process_video_multiprocessing, range(num_processes))
 
@@ -65,15 +82,13 @@ def multi_process():
     end_time = time.time()
     total_processing_time = end_time - start_time
     print("Time taken: {}".format(total_processing_time))
-    print("FPS : {}".format(frame_count/total_processing_time))
 
 if __name__ == "__main__":
-    video_path = "videos/RogerFedererDoha2021.mp4"
-    output_file_name = output + "/" + video_path
-    width, height, frame = get_video_frame_details(video_path)
-    print("Video frame count = {}".format(frame_count))
-    print("Width = {}, Height = {}".format(width, height))
+    video_path = "..input/RogerFedererDoha2021.mp4"
+    
+    output_file_name = "output"+video_path.split('/')[-1]
     num_processes = mp.cpu_count()
     print("Number of CPU: " + str(num_processes))
-    frame_jump_unit =  frame_count// num_processes
     multi_process()
+
+#Reference: https://www.xailient.com/post/multiprocessing-video-in-python

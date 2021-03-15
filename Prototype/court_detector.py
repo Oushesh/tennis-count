@@ -19,9 +19,7 @@ args = vars(ap.parse_args())
 image = cv2.imread(args["image"])
 
 # define the list of boundaries
-boundaries = [
-    ([180, 180, 100], [255, 255, 255])
-]
+boundaries = [([180, 180, 100], [255, 255, 255])]
 
 # loop over the boundaries
 for (lower, upper) in boundaries:
@@ -101,6 +99,6 @@ for inter in intersections:
             lines_edges[int(b) + i, int(a) + j] = [0, 0, 255]
 
 # Show the result
-cv2.imshow('line_intersections.png', lines_edges)
-cv2.imwrite('line_intersections.png', lines_edges)
+cv2.imshow('line_intersections3.png', lines_edges)
+cv2.imwrite('line_intersections3.png', lines_edges)
 #cv2.waitKey(0)
