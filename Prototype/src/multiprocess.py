@@ -38,7 +38,6 @@ def process_video_multiprocessing(group_number):
     num_processes = mp.cpu_count()
     #print("Number of CPU: " + str(num_processes))
     frame_jump_unit = frame_count // num_processes
-
     cap.set(cv.CAP_PROP_POS_FRAMES, frame_jump_unit*group_number)
 
     fps = int(cap.get(cv.CAP_PROP_FPS))
@@ -48,6 +47,7 @@ def process_video_multiprocessing(group_number):
     fourcc = cv.VideoWriter_fourcc('m', 'p', '4', 'v')
     out = cv.VideoWriter()
     output_file_name = "output_multi.mp4"
+    print ("output_file_name")
     out.open("output_{}.mp4".format(group_number), fourcc, fps, (width, height), True)
     try:
         while proc_frames < frame_jump_unit:
@@ -59,6 +59,8 @@ def process_video_multiprocessing(group_number):
             #Perorm Tennis court detection on each frame
             #TODO: call the court detector here.
             out = detector(im)
+            print ("calling detector")
+            print ("out",out)
             cv2.imwrite("outptut.jpg",out)
             proc_frames += 1
     except:
@@ -78,14 +80,14 @@ def multi_process():
     p = mp.Pool(num_processes)
     p.map(process_video_multiprocessing, range(num_processes))
 
-    combine_output_files(num_processes)
+    #combine_output_files(num_processes)
     end_time = time.time()
     total_processing_time = end_time - start_time
     print("Time taken: {}".format(total_processing_time))
 
 if __name__ == "__main__":
     video_path = "..input/RogerFedererDoha2021.mp4"
-    
+
     output_file_name = "output"+video_path.split('/')[-1]
     num_processes = mp.cpu_count()
     print("Number of CPU: " + str(num_processes))

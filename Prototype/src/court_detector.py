@@ -38,15 +38,12 @@ def detector(image):
 
     for contour in contours:
         cvw.circle(image, contour.center, 3, cvw.Color.RED, -1)
+    cv2.imwrite("o")
     return image
 
     #Draw the lines here given the points in OpenCV2.
-print (cv2.imread("../input/tennis.jpg"))
-detector(cv2.imread("../input/tennis.jpg"))
+#print (cv2.imread("../input/tennis.jpg"))
+#detector(cv2.imread("../input/tennis.jpg"))
 
-#detector(cv2.imread())
-#cv2.waitKey(0)
-#Business proposal: Good exercise
-#$60,000 or more to set up on each court [1], reconstitutes shots in 3D
 #TODO: import tennis video & run the code with multiprocessing to get
 #tennis count for the output.
