@@ -33,12 +33,23 @@ def detector(image):
 
     thresh = cvw.threshold_otsu(corners)
     dilated = cvw.dilate(thresh, 3)
-
     contours = cvw.find_external_contours(dilated)
 
+    #TODO: Can be combined together in 1 loop
     for contour in contours:
         cvw.circle(image, contour.center, 3, cvw.Color.RED, -1)
-    cv2.imwrite("o")
+        #Draw lines using openCV
+    #Build a list of contour.center
+
+    '''
+    pts = [(int(contour.center.x),int(contour.center.y)) for contour in contours]
+    #print (pts)
+    #TODO: selection of points needed.
+
+    for i in range(len(pts)-1):
+        cv2.line(image,pts[i],pts[i+1],(255,0,0),2)
+        cv2.imshow("Image",image)
+    '''
     return image
 
     #Draw the lines here given the points in OpenCV2.
