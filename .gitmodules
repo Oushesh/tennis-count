@@ -1,3 +1,6 @@
 [submodule "TrackNet-Badminton-Tracking-tensorflow2"]
 	path = TrackNet-Badminton-Tracking-tensorflow2
 	url = https://github.com/Chang-Chia-Chi/TrackNet-Badminton-Tracking-tensorflow2.git
+[submodule "scor_count/TextFuseNet"]
+	path = scor_count/TextFuseNet
+	url = https://github.com/ying09/TextFuseNet.git
