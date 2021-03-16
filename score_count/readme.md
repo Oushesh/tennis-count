@@ -15,3 +15,6 @@
 
     * Pypi: https://github.com/madmaze/pytesseract
     * https://pypi.org/project/pytextractor/33
+
+
+    * Wild-OCR: https://github.com/oezguensi/wild-OCR
