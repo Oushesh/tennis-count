@@ -41,17 +41,42 @@ def lucas_kanade_method(video_path):
     '''
     The main is meant to start from here
     '''
+    keypoints = []
+    cropp_coordinates = []
+    count = 0
     while True:
         # Read new frame
         ret, frame = cap.read()
+        cv2.imwrite("frame"+ str(count)+".jpg",frame)
         if not ret:
             break
         frame_gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
         # Calculate Optical Flow
-        p1, st, err = cv2.calcOpticalFlowPyrLK(
-            old_gray, frame_gray, p0, None, **lk_params
-        )
+        '''
+        Refer to all the stuffs here:
+        p1: nextPts
+        status: 0: if no flow.
+                1: if there is flow.
+        err: error
+        '''
+        p1, st, err = cv2.calcOpticalFlowPyrLK(old_gray, frame_gray, p0, None, **lk_params)
+        keypoints.append(p1)
+
+        max_x = int(max([point[0][0] for point in p1]))
+        max_y = int(max([point[0][1] for point in p1]))
+        min_x = int(min([point[0][0] for point in p1]))
+        min_y = int(min([point[0][1] for point in p1]))
+        #cv2.imshow(frame[])
+        print (min_x,min_y,max_x,max_y)
+
+        #Crop the region of interest here:
+        #TODO: use the scientific theorem provided by the paper:
+        #https://arxiv.org/pdf/1801.01430.pdf
+        #Decide on how to put the threshold
+        cv2.imwrite("cropped" + str(count) + ".jpg",frame[min_y-20:max_y+20,min_x-20:max_y+20])
+        count+=1
+
         # Select good points
         good_new = p1[st == 1]
         good_old = p0[st == 1]
@@ -76,12 +101,15 @@ def lucas_kanade_method(video_path):
 
 #Extension of Lukas Kanade Method:
 #1. Playing with the block size of: 50,50 approximately the width height
-#2. We can also add the credential from the Indian student paper.
+#2. We can also add the credential from the Indian student paper --> modify it from here
 #3. See how to get the coordinates where Lucas Kanade has motion: -->
-#4. reduce the ROI for the EAST: detector 
+#4. reduce the ROI for the EAST: detector
 if __name__ == "__main__":
-    video_path = "video/RogerFedererDoha2021.mp4"
+    #video_path = "video/RogerFedererDoha2021.mp4"
+    video_path = "video/TheBestGameEver_MurrayvFederer_cut001.mp4"
     lucas_kanade_method(video_path)
-#python demo.py --algorithm lucaskanade --video_path videos/car.mp4
 
-#Given this works we should
+
+#python demo.py --algorithm lucaskanade --video_path videos/car.mp4
+#example here: https://www.geeksforgeeks.org/python-opencv-optical-flow-with-lucas-kanade-method/
+#Crop the region of intetest here:

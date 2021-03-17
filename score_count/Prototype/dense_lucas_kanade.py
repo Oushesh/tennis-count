@@ -58,16 +58,17 @@ def dense_optical_flow(method, video_path, params=[], to_gray=False):
         k = cv2.waitKey(25) & 0xFF
         if k == 27:
             break
-
         # Update the previous frame
         old_frame = new_frame
-
 
 #How to run.
 if __name__ == "__main__":
     video_path = "video/RogerFedererDoha2021.mp4"
     method = cv2.optflow.calcOpticalFlowSparseToDense
-    dense_optical_flow(method,video_path,save,to_grav=True)
+    save=True
+    dense_optical_flow(method,video_path,save,to_gray=True)
 #python demo.py --algorithm lucaskanade --video_path videos/car.mp4
 #https://stackoverflow.com/questions/44633378/attributeerror-module-cv2-cv2-has-no-attribute-createlbphfacerecognizer
 #pip install: pip install opencv-contrib-python
+
+#TODO: to fix dense_lucas_kanade error
