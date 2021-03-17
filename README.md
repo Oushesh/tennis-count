@@ -43,4 +43,7 @@
 
 #### Business Proposal of this project
      * $60,000 or more to set up on each court [1], reconstitutes shots in 3D
+<<<<<<< HEAD
      * Filtering Big branch: https://thomas-cokelaer.info/blog/2018/02/git-how-to-remove-a-big-file-wrongly-committed/
+=======
+>>>>>>> 04b6b6e41f9dfddee954cccf73ec614d92994c18

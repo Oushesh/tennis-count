@@ -10,8 +10,11 @@
     1) Deep Learning Based
         * Pass in TextFuseNet:
     2) OpenCV OCR + Tesseract Engine: https://www.pyimagesearch.com/2018/09/17/opencv-ocr-and-text-recognition-with-tesseract/
+<<<<<<< HEAD
       TODO: connect the output from East Detector to Pytesseract engine.
       Google OCR Engine
+=======
+>>>>>>> 04b6b6e41f9dfddee954cccf73ec614d92994c18
     *  https://arxiv.org/abs/1704.03155
     * https://www.pyimagesearch.com/2018/09/17/opencv-ocr-and-text-recognition-with-tesseract/
 
@@ -20,6 +23,7 @@
 
 
     * Wild-OCR: https://github.com/oezguensi/wild-OCR
+<<<<<<< HEAD
 
 
 
@@ -32,3 +36,5 @@
     * Tested Lucas Kanade Flow method.
     * Now testing the other pyramid approaches.
     * Mention optimisation with Nvidia Cuda implementation: https://developer.nvidia.com/blog/opencv-optical-flow-algorithms-with-nvidia-turing-gpus/
+=======
+>>>>>>> 04b6b6e41f9dfddee954cccf73ec614d92994c18
