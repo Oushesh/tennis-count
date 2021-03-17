@@ -11,8 +11,15 @@ OCR: based on pytesseract Google V4 engine
 
 #Load the image here.
 #Detect then pass for OCR detection
-#Check where does get_
-whitelist = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+
+import numpy as np
+import cv2
+import pytesseract
+import re
+import sys
+
+from PIL import Image
+from collections import defaultdict
 
 def get_ocr_data(img, psm=6, oem=1, whitelist=None):
     '''
@@ -26,6 +33,22 @@ def get_ocr_data(img, psm=6, oem=1, whitelist=None):
     '''
     ocr_data = pytesseract.image_to_data(Image.fromarray(img),output_type='dict',config='--psm {} --oem {} -c load_system_dawg=0 load_freq_dawg=0'.format(psm, oem))
     # as whitelist doesn't work for LSTM engine
-    ocr_data['text'] = [re.sub(r'[^{}]+'.format(whitelist), '', text) if whitelist is not None else text
-                        for text in ocr_data['text']]
+    ocr_data['text'] = [re.sub(r'[^{}]+'.format(whitelist), '', text) if whitelist is not None else text                        for text in ocr_data['text']]
     return ocr_data
+
+#Complete the ocr implementation here:
+#Refactor the code, then perform improvement with different classification algorithms
+
+if __name__ == "__main__":
+    groundtruth = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+    img = "cropped20.jpg"
+    image = cv2.imread(img)
+    #print (image)
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    #call pytesseract engine
+    text  = pytesseract.image_to_string(gray,groundtruth)
+    print ("The recognised text is:",text)
+
+
+#How to properly install tesseract here:
+#https://medium.com/@ahmedbr/how-to-implement-pytesseract-properly-d6e2c2bc6dda

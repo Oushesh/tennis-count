@@ -105,8 +105,8 @@ def lucas_kanade_method(video_path):
 #3. See how to get the coordinates where Lucas Kanade has motion: -->
 #4. reduce the ROI for the EAST: detector
 if __name__ == "__main__":
-    #video_path = "video/RogerFedererDoha2021.mp4"
-    video_path = "video/TheBestGameEver_MurrayvFederer_cut001.mp4"
+    video_path = "video/RogerFedererDoha2021.mp4"
+    #video_path = "video/TheBestGameEver_MurrayvFederer_cut001.mp4"
     lucas_kanade_method(video_path)
 
 
