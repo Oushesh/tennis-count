@@ -21,6 +21,7 @@ import sys
 from PIL import Image
 from collections import defaultdict
 
+from utils import *
 '''
 Referring to EAST github detector:
 The EAST detector would output the detections:
@@ -32,19 +33,14 @@ def detections2crops(img,detect_list_path):
     count=0
     for detection in f:
         values = detection.split(',')
-        #print (values)
         #here we have the 4 corner-coordinates x1,y1,x2,y2,x3,y3,x4,y4
         min_x = min([int(a) for a in [values[0],values[2],values[4],values[6]]])
-        #print (min_x)
         min_y = min([int(a) for a in [values[1],values[3],values[5],values[7]]])
-        #print (min_y)
         max_x = max([int(a) for a in [values[0],values[2],values[4],values[6]]])
-        #print (max_x)
         max_y = max([int(a) for a in [values[1],values[3],values[5],values[7]]])
-        #print (max_y)
+
         #Perform test-check that detector
-        print ("image_shape",img.shape)
-        print (min_x,min_y,max_x,max_y)
+
         assert(min_y>0 and min_y <img.shape[0])
         assert(max_y>0 and max_y <img.shape[0])
         assert(min_x>0 and min_x <img.shape[1])
@@ -56,15 +52,8 @@ def detections2crops(img,detect_list_path):
 
 detect_list_path = "../EAST/model/eval/frame31.txt"
 img = cv2.imread("../EAST/examples/frame31.jpg")
-print (img)
-detections2crops(img,detect_list_path)
 
-def img2detections(img,detections):
-    idx = 0
-    for detection in detections:
-        #We get the detected coorindates here:
-        idx+=1
-    return
+detections2crops(img,detect_list_path)
 
 def get_ocr_data(img, psm=6, oem=1, whitelist=None):
     '''
@@ -84,29 +73,40 @@ def get_ocr_data(img, psm=6, oem=1, whitelist=None):
 
 #Use a pretty simple regex function to
 #extract all numbers from input string
-#def digit():
 #Fine tuning OCR tesseract
 
+#1. OCR.
+#3. Finetune the recognition approach with boxes
+
+
+#def fine_tune():
+#TODO: implement dictionary of player names as a filter
+#TODO: implement the fine_tune algorithm here.
+#TODO: implement multiprocessing here.
+
+#def filter(ocr,dictionary):
+
+
 if __name__ == "__main__":
-    groundtruth = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
     img = "cropped20.jpg"
     img = "char_digit.jpg"
     image = cv2.imread(img)
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    #otsu_img, thresh = cv2.threshold(image, 100, 255, cv2.THRESH_OTSU)
-    #cv2.imwrite(otsu_img,"otsu_img.jpg")
 
     #call pytesseract engine
     text  = pytesseract.image_to_string(gray,lang='eng')
     #print (get_ocr_data(gray, psm=6, oem=1,whitelist=groundtruth))
     #psm = page segmentation methods
     ocr_result = pytesseract.image_to_string(image, lang='eng',config='--psm 6 --oem 1 -c tessedit_char_whitelist=0123456789')
+
     print ('The trial result is:',ocr_result)
     print ("The recognised text is:",text)
+    print ("The length of the result is:",len(text))
 
-#TODO: complete the 1 pipeline and results first: then we work on the improvement
+    #TODO: complete the 1 pipeline and results first: then we work on the improvement
 
-    #Getting Boxes around .txt for adaptive binarisation strategies.
+    #Getting Boxes around.txt for adaptive binarisation strategies.
+
     boxes = pytesseract.image_to_boxes(gray)
     h,w,_ = image.shape
     for b in boxes.splitlines():
@@ -116,5 +116,6 @@ if __name__ == "__main__":
     cv2.imshow('boxed',boxed)
     cv2.imwrite("boxed_char_digit.jpg",boxed)
 
-    #Pytesseract to subboexes --> then perform ocr on it. again
-    #https://nanonets.com/blog/ocr-with-tesseract/
+    # Pytesseract to subboexes --> then perform ocr on it. again
+    # https://nanonets.com/blog/ocr-with-tesseract/
+    #

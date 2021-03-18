@@ -9,8 +9,8 @@
 ### Installation Guideline
     * tesseract installation properly:
       * https://medium.com/@ahmedbr/how-to-implement-pytesseract-properly-d6e2c2bc6dda
-### Current Pipeline:
-    1) Deep Learning Based
+## Current Pipeline:
+   * Deep Learning Based
         * Pass in TextFuseNet:
     2) OpenCV OCR + Tesseract Engine: https://www.pyimagesearch.com/2018/09/17/opencv-ocr-and-text-recognition-with-tesseract/
 
@@ -28,16 +28,38 @@
     *
     * Mention optimisation with Nvidia Cuda implementation: https://developer.nvidia.com/blog/opencv-optical-flow-algorithms-with-nvidia-turing-gpus/
 
-
-### Optimisation and Inference:
-    * How to make the current stuffs better?
+## Optimisation and Inference:
+  * How to make the current stuffs better?
       * Optical Flow Part:
         Referred from Nvidia Claim: https://developer.nvidia.com/opticalflow-sdk
           * Up to 150 fps at 4K resolution.
           * at 1/4 pixel resolution. (150*4)x Improvement Factor.
 
-    * Improvement on the Digit & Character Recognition Part --> separate the run for digit and character part.
+      * Implementation of Lukas Kanade (The idea behind it.)
+      * Motion Flow estimation
+
+    * Digit & Character Recognition Part
+      * CURRENT:
+        * The player name is finite. So it is possible to build a dictionary
+          to further refine results. This allows to eliminate errors from the
+          Tesseract V4. LSTM based Google OCR Engine.
+      * IMPROVEMENT:
+        * Given that the Tesseract Engine is LSTM based and has been trained onto
+          thousands of texts with different handwriting, fonts, lighting conditions(contrast) and so on. It captures a lot of variance which are
+          not needed here: for instance: handwriting, contrast and lighting.
+          Instead one can custom train the Tesseract engine for this particular use-case
+        * Other options:
+          * Google Cloud Vision API
+          * Microsoft Computer Vision API
+          * misceallaenous cloud providers.
+      * Separate the run for digit and character part.
       We can use data mining to detect  the true names from a dictionary
     * Even if we don't have perfect scoreboard detection, the list of
       players in Tennis is finite. So build a dictionary and search if the
       detected player game is inside the dictionary. (Sanity Check)
+
+## My Development Philosophy:
+   * Ubuntu 18.04, Atom, Sublime Text
+   * Github, possibly for production Docker, Github integrated workflows CI/CD 
+## TODOs
+   * Add the pictures of the test and run command next to each bulltet point.
