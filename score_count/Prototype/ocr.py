@@ -21,12 +21,9 @@ import sys
 from PIL import Image
 from collections import defaultdict
 
-###This is an adaptation function
-
 '''
 Referring to EAST github detector:
 The EAST detector would output the detections:
-
 '''
 def detections2crops(img,detect_list_path):
     #Read file then write the croppeed
@@ -35,26 +32,37 @@ def detections2crops(img,detect_list_path):
     count=0
     for detection in f:
         values = detection.split(',')
-        print (values[0])
+        #print (values)
         #here we have the 4 corner-coordinates x1,y1,x2,y2,x3,y3,x4,y4
-        min_x = [int()
-        min_y =
-        max_x =
-        max_y =
-        cv2.imwrite("detection" + str(count)+".jpg",img[min_y:max_y,min_x:max_y])
+        min_x = min([int(a) for a in [values[0],values[2],values[4],values[6]]])
+        #print (min_x)
+        min_y = min([int(a) for a in [values[1],values[3],values[5],values[7]]])
+        #print (min_y)
+        max_x = max([int(a) for a in [values[0],values[2],values[4],values[6]]])
+        #print (max_x)
+        max_y = max([int(a) for a in [values[1],values[3],values[5],values[7]]])
+        #print (max_y)
+        #Perform test-check that detector
+        print ("image_shape",img.shape)
+        print (min_x,min_y,max_x,max_y)
+        assert(min_y>0 and min_y <img.shape[0])
+        assert(max_y>0 and max_y <img.shape[0])
+        assert(min_x>0 and min_x <img.shape[1])
+        assert(max_x>0 and max_x <img.shape[1])
+
+        cv2.imwrite("detection" + str(count)+".jpg",img[min_y:max_y,min_x:max_x])
         count +=1
     return None
 
 detect_list_path = "../EAST/model/eval/frame31.txt"
 img = cv2.imread("../EAST/examples/frame31.jpg")
+print (img)
 detections2crops(img,detect_list_path)
-
 
 def img2detections(img,detections):
     idx = 0
     for detection in detections:
         #We get the detected coorindates here:
-
         idx+=1
     return
 
@@ -74,21 +82,26 @@ def get_ocr_data(img, psm=6, oem=1, whitelist=None):
     return ocr_data
 #Complete the ocr implementation here:
 
+#Use a pretty simple regex function to
+#extract all numbers from input string
+#def digit():
+#Fine tuning OCR tesseract
 
 if __name__ == "__main__":
-    #groundtruth = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+    groundtruth = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
     img = "cropped20.jpg"
-    img = "frame31.jpg"
+    img = "char_digit.jpg"
     image = cv2.imread(img)
-    #print (image)
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    #otsu_img, thresh = cv2.threshold(image, 100, 255, cv2.THRESH_OTSU)
+    #cv2.imwrite(otsu_img,"otsu_img.jpg")
+
     #call pytesseract engine
     text  = pytesseract.image_to_string(gray,lang='eng')
+    #print (get_ocr_data(gray, psm=6, oem=1,whitelist=groundtruth))
+    #psm = page segmentation methods
+    ocr_result = pytesseract.image_to_string(image, lang='eng',config='--psm 6 --oem 1 -c tessedit_char_whitelist=0123456789')
+    print ('The trial result is:',ocr_result)
     print ("The recognised text is:",text)
 
-#How to properly install tesseract here:
-#https://medium.com/@ahmedbr/how-to-implement-pytesseract-properly-d6e2c2bc6dda
-#needed is a function from image to decoupled crops for each detection
 #TODO: complete the 1 pipeline and results first: then we work on the improvement
-
-#Test for the whole detection.

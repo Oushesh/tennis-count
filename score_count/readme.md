@@ -6,6 +6,9 @@
     * OCR used: Google Tesseract (pytesseract)
     *
 
+### Installation Guideline
+    * tesseract installation properly:
+      * https://medium.com/@ahmedbr/how-to-implement-pytesseract-properly-d6e2c2bc6dda
 ### Current Pipeline:
     1) Deep Learning Based
         * Pass in TextFuseNet:
@@ -28,6 +31,13 @@
 
 ### Optimisation and Inference:
     * How to make the current stuffs better?
-      Referred from Nvidia Claim: https://developer.nvidia.com/opticalflow-sdk
-        * Up to 150 fps at 4K resolution.
-        * at 1/4 pixel resolution. (150*4)x Imrovement Factor.
+      * Optical Flow Part:
+        Referred from Nvidia Claim: https://developer.nvidia.com/opticalflow-sdk
+          * Up to 150 fps at 4K resolution.
+          * at 1/4 pixel resolution. (150*4)x Improvement Factor.
+
+    * Improvement on the Digit & Character Recognition Part --> separate the run for digit and character part.
+      We can use data mining to detect  the true names from a dictionary
+    * Even if we don't have perfect scoreboard detection, the list of
+      players in Tennis is finite. So build a dictionary and search if the
+      detected player game is inside the dictionary. (Sanity Check)
