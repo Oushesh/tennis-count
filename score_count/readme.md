@@ -36,14 +36,20 @@
           * at 1/4 pixel resolution. (150*4)x Improvement Factor.
 
       * Implementation of Lukas Kanade (The idea behind it.)
-        * Video Screenshot:
-          ![Features_Lucas_Kanade](/Documentation/lucas_kanade.jpg)
+        * CURRENT & LIMITATIONS :
+        * IMPROVEMENT :
+          * Why and how it is really good.
+          * Video Screenshot:
+            ![Features_Lucas_Kanade](Documentation/lucas_kanade.jpg)
 
       * Motion Flow estimation
 
     * Digit & Character Recognition Part
       * Some screenshots here:
-        ![Scorecard](/Documentation/scorecard.jpg)
+        * ![Scorecard](Documentation/scorecard.jpg)
+        
+        * ![Scorecard_boxed](Documentation/scorecard_boxed_char_digit.jpg)
+
       * CURRENT:
         * The player name is finite. So it is possible to build a dictionary
           to further refine results. This allows to eliminate errors from the
