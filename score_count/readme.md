@@ -37,7 +37,8 @@
 
       * Implementation of Lukas Kanade (The idea behind it.)
         * Video Screenshot:
-          ![](Documentation/lucas_kanade.jpg)
+          ![Features_Lucas_Kanade](Documentation/lucas_kanade.jpg)
+
       * Motion Flow estimation
 
     * Digit & Character Recognition Part
