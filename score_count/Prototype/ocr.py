@@ -69,23 +69,41 @@ def get_ocr_data(img, psm=6, oem=1, whitelist=None):
     # as whitelist doesn't work for LSTM engine
     ocr_data['text'] = [re.sub(r'[^{}]+'.format(whitelist), '', text) if whitelist is not None else text                        for text in ocr_data['text']]
     return ocr_data
-#Complete the ocr implementation here:
 
-#Use a pretty simple regex function to
-#extract all numbers from input string
+
 #Fine tuning OCR tesseract
 
 #1. OCR.
 #3. Finetune the recognition approach with boxes
 
 
-#def fine_tune():
-#TODO: implement dictionary of player names as a filter
 #TODO: implement the fine_tune algorithm here.
 #TODO: implement multiprocessing here.
 
-#def filter(ocr,dictionary):
+groundtruth = {'Federer','Nadal','Basilashvili'}
 
+#Get the players after wrangling the data.
+def get_players(ocr,dictionary):
+    characters=ocr.split(' ')
+    print ('characters',characters)
+    players = []
+    for character in characters:
+        for name in groundtruth:
+            if not character.find(name)==-1:
+                players.append(name)
+
+        '''
+        if '\n' in character:
+            print ('bad',character)
+            character=character.replace('\n','')
+            print ('good',character)
+            characters.append(character)
+        '''
+    return players
+
+#Get the serving player
+def serving_player():
+    return serving_player
 
 if __name__ == "__main__":
     img = "cropped20.jpg"
@@ -94,18 +112,19 @@ if __name__ == "__main__":
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
     #call pytesseract engine
-    text  = pytesseract.image_to_string(gray,lang='eng')
-    #print (get_ocr_data(gray, psm=6, oem=1,whitelist=groundtruth))
-    #psm = page segmentation methods
-    ocr_result = pytesseract.image_to_string(image, lang='eng',config='--psm 6 --oem 1 -c tessedit_char_whitelist=0123456789')
+    ocr_text  = pytesseract.image_to_string(gray,lang='eng')
+    '''
+    psm = page semgnetation methods
+    oem : original engine
+    '''
 
-    print ('The trial result is:',ocr_result)
-    print ("The recognised text is:",text)
-    print ("The length of the result is:",len(text))
+    #ocr_result = pytesseract.image_to_string(image, lang='eng',config='--psm 6 --oem 1 -c tessedit_char_whitelist=0123456789')
+    #print ('The trial result is:',ocr_result)
 
-    #TODO: complete the 1 pipeline and results first: then we work on the improvement
+    print ("The recognised text is:",ocr_text)
+    print ("The length of the result is:",len(ocr_text))
 
-    #Getting Boxes around.txt for adaptive binarisation strategies.
+    print (get_players(ocr_text,groundtruth))
 
     boxes = pytesseract.image_to_boxes(gray)
     h,w,_ = image.shape

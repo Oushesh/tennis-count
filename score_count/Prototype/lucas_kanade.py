@@ -21,10 +21,7 @@ def lucas_kanade_method(video_path):
     feature_params = dict(maxCorners=10, qualityLevel=0.3, minDistance=7, blockSize=15)
 
     # Parameters for Lucas Kanade optical flow
-    lk_params = dict(
-        winSize=(50, 50),
-        maxLevel=2,
-        criteria=(cv2.TERM_CRITERIA_EPS | cv2.TERM_CRITERIA_COUNT, 10, 0.03),
+    lk_params = dict(winSize=(50, 50),maxLevel=2,criteria=(cv2.TERM_CRITERIA_EPS | cv2.TERM_CRITERIA_COUNT, 10, 0.03),
     )
 
     # Create random colors
@@ -45,7 +42,7 @@ def lucas_kanade_method(video_path):
     while True:
         # Read new frame
         ret, frame = cap.read()
-        cv2.imwrite("frame"+ str(count)+".jpg",frame)
+
         if not ret:
             break
         frame_gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
@@ -89,6 +86,7 @@ def lucas_kanade_method(video_path):
         # Display the demo
         img = cv2.add(frame, mask)
         cv2.imshow("frame", img)
+        cv2.imwrite("frame"+ str(count)+".jpg",frame)
         k = cv2.waitKey(25) & 0xFF
         if k == 27:
             break
@@ -108,7 +106,7 @@ if __name__ == "__main__":
     #video_path = "video/TheBestGameEver_MurrayvFederer_cut001.mp4"
     lucas_kanade_method(video_path)
 
-
-#python demo.py --algorithm lucaskanade --video_path videos/car.mp4
+'''
+python lucas_kanade.py
+'''
 #example here: https://www.geeksforgeeks.org/python-opencv-optical-flow-with-lucas-kanade-method/
-#Crop the region of intetest here:

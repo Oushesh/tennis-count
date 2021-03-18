@@ -36,6 +36,8 @@
           * at 1/4 pixel resolution. (150*4)x Improvement Factor.
 
       * Implementation of Lukas Kanade (The idea behind it.)
+        * Video Screenshot:
+          ![](Documentation/lucas_kanade.jpg)
       * Motion Flow estimation
 
     * Digit & Character Recognition Part
@@ -51,7 +53,7 @@
         * Other options:
           * Google Cloud Vision API
           * Microsoft Computer Vision API
-          * misceallaenous cloud providers.
+          * miscellaneous cloud providers.
       * Separate the run for digit and character part.
       We can use data mining to detect  the true names from a dictionary
     * Even if we don't have perfect scoreboard detection, the list of
@@ -59,7 +61,9 @@
       detected player game is inside the dictionary. (Sanity Check)
 
 ## My Development Philosophy:
-   * Ubuntu 18.04, Atom, Sublime Text
-   * Github, possibly for production Docker, Github integrated workflows CI/CD 
+   * Fast Code write-up always done on: https://replit.com/~?onboarding=1
+   * Ubuntu 18.04, Atom, Sublime Text,
+   * Github, possibly for production Docker, Github integrated workflows CI/CD
+   * Hoping github releases Codespace soon.
 ## TODOs
    * Add the pictures of the test and run command next to each bulltet point.
