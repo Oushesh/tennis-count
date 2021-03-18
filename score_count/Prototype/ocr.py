@@ -21,6 +21,23 @@ import sys
 from PIL import Image
 from collections import defaultdict
 
+###This is an adaptation function
+'''
+Referring to EAST github detector:
+'''
+def detections2crops(img,detec_list):
+    #Read file then write the croppeed
+    #detected objects onto disk
+    return None
+
+def img2detections(img,detections):
+    idx = 0
+    for detection in detections:
+        #We get the detected coorindates here:
+
+        idx+=1
+    return
+
 def get_ocr_data(img, psm=6, oem=1, whitelist=None):
     '''
     Reads the text.
@@ -42,13 +59,15 @@ def get_ocr_data(img, psm=6, oem=1, whitelist=None):
 if __name__ == "__main__":
     groundtruth = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
     img = "cropped20.jpg"
+    img = "frame31.jpg"
     image = cv2.imread(img)
     #print (image)
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     #call pytesseract engine
-    text  = pytesseract.image_to_string(gray,groundtruth)
+    text  = pytesseract.image_to_string(gray,lang='eng')
     print ("The recognised text is:",text)
-
 
 #How to properly install tesseract here:
 #https://medium.com/@ahmedbr/how-to-implement-pytesseract-properly-d6e2c2bc6dda
+
+#needed is a function from image to decoupled crops for each detection
