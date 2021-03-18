@@ -112,8 +112,9 @@ if __name__ == "__main__":
     for b in boxes.splitlines():
         b = b.split(' ')
         boxed = cv2.rectangle(image, (int(b[1]), h - int(b[2])), (int(b[3]), h - int(b[4])), (0, 255, 0), 2)
-        #write those images onto the 
+        #write those images onto the
     cv2.imshow('boxed',boxed)
     cv2.imwrite("boxed_char_digit.jpg",boxed)
 
     #Pytesseract to subboexes --> then perform ocr on it. again
+    #https://nanonets.com/blog/ocr-with-tesseract/
