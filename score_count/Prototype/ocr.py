@@ -22,13 +22,28 @@ from PIL import Image
 from collections import defaultdict
 
 ###This is an adaptation function
+
 '''
 Referring to EAST github detector:
+The EAST detector would output the detections:
+
 '''
-def detections2crops(img,detec_list):
+def detections2crops(img,detect_list_path):
     #Read file then write the croppeed
     #detected objects onto disk
+    f = open(detect_list_path,"r")
+    count=0
+    for detection in f:
+        print (detection)
+        #here we have the 4 corner-coordinates x1,y1,x2,y2,x3,y3,x4,y4
+        cv2.imwrite("detection" + str(count)+".jpg",img[min_y-20:max_y+20,min_x-20:max_y+20])
+        cv2.
+        count +=1
+
     return None
+
+detect_list_path = "../EAST/model/eval/frame31.txt"
+detections2crops(img,detect_list_path)
 
 def img2detections(img,detections):
     idx = 0
@@ -57,7 +72,7 @@ def get_ocr_data(img, psm=6, oem=1, whitelist=None):
 #Refactor the code, then perform improvement with different classification algorithms
 
 if __name__ == "__main__":
-    groundtruth = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+    #groundtruth = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
     img = "cropped20.jpg"
     img = "frame31.jpg"
     image = cv2.imread(img)

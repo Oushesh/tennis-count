@@ -38,9 +38,7 @@ def lucas_kanade_method(video_path):
     # Create a mask image for drawing purposes
     mask = np.zeros_like(old_frame)
 
-    '''
-    The main is meant to start from here
-    '''
+
     keypoints = []
     cropp_coordinates = []
     count = 0
