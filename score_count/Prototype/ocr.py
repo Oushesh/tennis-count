@@ -105,3 +105,15 @@ if __name__ == "__main__":
     print ("The recognised text is:",text)
 
 #TODO: complete the 1 pipeline and results first: then we work on the improvement
+
+    #Getting Boxes around .txt for adaptive binarisation strategies.
+    boxes = pytesseract.image_to_boxes(gray)
+    h,w,_ = image.shape
+    for b in boxes.splitlines():
+        b = b.split(' ')
+        boxed = cv2.rectangle(image, (int(b[1]), h - int(b[2])), (int(b[3]), h - int(b[4])), (0, 255, 0), 2)
+        #write those images onto the 
+    cv2.imshow('boxed',boxed)
+    cv2.imwrite("boxed_char_digit.jpg",boxed)
+
+    #Pytesseract to subboexes --> then perform ocr on it. again
