@@ -34,16 +34,21 @@ def detections2crops(img,detect_list_path):
     f = open(detect_list_path,"r")
     count=0
     for detection in f:
-        print (detection)
+        values = detection.split(',')
+        print (values[0])
         #here we have the 4 corner-coordinates x1,y1,x2,y2,x3,y3,x4,y4
-        cv2.imwrite("detection" + str(count)+".jpg",img[min_y-20:max_y+20,min_x-20:max_y+20])
-        cv2.
+        min_x = [int()
+        min_y =
+        max_x =
+        max_y =
+        cv2.imwrite("detection" + str(count)+".jpg",img[min_y:max_y,min_x:max_y])
         count +=1
-
     return None
 
 detect_list_path = "../EAST/model/eval/frame31.txt"
+img = cv2.imread("../EAST/examples/frame31.jpg")
 detections2crops(img,detect_list_path)
+
 
 def img2detections(img,detections):
     idx = 0
@@ -67,9 +72,8 @@ def get_ocr_data(img, psm=6, oem=1, whitelist=None):
     # as whitelist doesn't work for LSTM engine
     ocr_data['text'] = [re.sub(r'[^{}]+'.format(whitelist), '', text) if whitelist is not None else text                        for text in ocr_data['text']]
     return ocr_data
-
 #Complete the ocr implementation here:
-#Refactor the code, then perform improvement with different classification algorithms
+
 
 if __name__ == "__main__":
     #groundtruth = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
@@ -84,5 +88,7 @@ if __name__ == "__main__":
 
 #How to properly install tesseract here:
 #https://medium.com/@ahmedbr/how-to-implement-pytesseract-properly-d6e2c2bc6dda
-
 #needed is a function from image to decoupled crops for each detection
+#TODO: complete the 1 pipeline and results first: then we work on the improvement
+
+#Test for the whole detection.
