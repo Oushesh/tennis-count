@@ -42,6 +42,8 @@
       * Motion Flow estimation
 
     * Digit & Character Recognition Part
+      * Some screenshots here:
+        ![Scorecard](/Documentation/scorecard.jpg)
       * CURRENT:
         * The player name is finite. So it is possible to build a dictionary
           to further refine results. This allows to eliminate errors from the

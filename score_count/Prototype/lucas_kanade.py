@@ -109,4 +109,3 @@ if __name__ == "__main__":
 '''
 python lucas_kanade.py
 '''
-#example here: https://www.geeksforgeeks.org/python-opencv-optical-flow-with-lucas-kanade-method/
