@@ -25,29 +25,57 @@
     * Optical Flow: https://developer.nvidia.com/blog/opencv-optical-flow-algorithms-with-nvidia-turing-gpus/
     * Tested Lucas Kanade Flow method.
     * Now testing the other pyramid approaches.
-    *
     * Mention optimisation with Nvidia Cuda implementation: https://developer.nvidia.com/blog/opencv-optical-flow-algorithms-with-nvidia-turing-gpus/
 
 ## Optimisation and Inference:
-  * How to make the current stuffs better?
+  * Video Scene Classification:
+    The video sometimes contain commercials and highlights which
+    need to be removed. classification as playing vs non-playing scene. (Binary Classification Problem). Several approaches will be mentionned below:
+    * 1. Tennis Court Detection -- Classical Computer Vision.
+          Hough Lines, Edge Detectors and Gaussian Smoothing.
+          Elimination of Points via the Homography Matrix. (To find the tennis plane)
+          ![Tennis_Court](Documentation/tennis_court_edge.jpg)
+          ![Tennis_Court](Documentation/tennis-court-detection.png)
+
+          Adv: Classical Computer Vision and can run in real time.<br/>
+          Disadv: Camera moves with the scene it can lead to fitting error. (plane rotation, etc..) --> Can be further solved by running a camera estimation
+          parameter using Fundamental Matrix/Essential Matrix with Bundle Adjustment
+          and warping the view.
+    * 2.  I have viewed a bit of tennis videos, its pretty humanly clear to classify the   videos. Since the tennis court is a plane occupying most of the frame when focused on game rather than the commercial:
+    We can use 3D Vectors or Feature Vectors: (example SIFT or Histogram of Oriented Gradients) learned. Use a banal classifier like SVM or even simple NN can classify
+    the scenes. This could further be used to perform automatic annotation of data.
+
+    * 3. Finally, one can use Deep Learning: Since the problem is more of a contrastive problem. Good Example vs Bad Example specifically. Siamese neural network
+    would be a really good fit here.
+    Disadv: its more work to manually build the positive pair vs negative pair for the anchor.
+    Adv: * Really robust against noisy data. (Contrastive and Triplet Loss)
+         * The feature extractor can be updated from VGG to ResNet to Inception NN if needed.
+
+
+
+  * Scorecard Extraction
+    
       * Optical Flow Part:
         Referred from Nvidia Claim: https://developer.nvidia.com/opticalflow-sdk
           * Up to 150 fps at 4K resolution.
           * at 1/4 pixel resolution. (150*4)x Improvement Factor.
 
-      * Implementation of Lukas Kanade (The idea behind it.)
+      * Implementation of Lukas Kanade
         * CURRENT & LIMITATIONS :
         * IMPROVEMENT :
           * Why and how it is really good.
           * Video Screenshot:
             ![Features_Lucas_Kanade](Documentation/lucas_kanade.jpg)
-
-      * Motion Flow estimation
+            ![Features_Lucas_Kanade](Documentation/lucas_kanade002.jpg)
+            ![Features_Lucas_Kanade](Documentation/lucas_kanade003.jpg)
+            ![Features_Lucas_Kanade](Documentation/lucas_kanade004.jpg)
+            ![Features_Lucas_Kanade](Documentation/lucas_kanade_005.jpg)
+            ![Features_Lucas_Kanade](Documentation/lukas_kanade_006.jpg)
+            ![Features_Lucas_Kanade](Documentation/lucas_kanade_007.jpg)
 
     * Digit & Character Recognition Part
       * Some screenshots here:
         * ![Scorecard](Documentation/scorecard.jpg)
-        
         * ![Scorecard_boxed](Documentation/scorecard_boxed_char_digit.jpg)
 
       * CURRENT:
@@ -75,4 +103,16 @@
    * Github, possibly for production Docker, Github integrated workflows CI/CD
    * Hoping github releases Codespace soon.
 ## TODOs
-   * Add the pictures of the test and run command next to each bulltet point.
+   * Elaborate on the video frame classification (rally extraction), video stabilisation.
+   * Speak in details about your prowess of detectors.
+   * Implement the Dense Lucas Kanade for better tracking and optical flow vectors
+
+## Reference
+   * https://github.com/gchlebus/tennis-court-detection
+   * https://github.com/vishaltiwari/bmvc-tennis-analytics
+   *
+
+## Installation
+   * pip install: pip install opencv-contrib-python
+   * Install the requirements.txt --> pip install -r requirements.txt
+   *

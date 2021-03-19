@@ -35,9 +35,6 @@ def lucas_kanade_method(video_path):
     # Create a mask image for drawing purposes
     mask = np.zeros_like(old_frame)
 
-
-    keypoints = []
-    cropp_coordinates = []
     count = 0
     while True:
         # Read new frame
@@ -49,27 +46,25 @@ def lucas_kanade_method(video_path):
 
         # Calculate Optical Flow
         '''
-        Refer to all the stuffs here:
         p1: nextPts
         status: 0: if no flow.
                 1: if there is flow.
         err: error
         '''
         p1, st, err = cv2.calcOpticalFlowPyrLK(old_gray, frame_gray, p0, None, **lk_params)
-        keypoints.append(p1)
 
         max_x = int(max([point[0][0] for point in p1]))
         max_y = int(max([point[0][1] for point in p1]))
         min_x = int(min([point[0][0] for point in p1]))
         min_y = int(min([point[0][1] for point in p1]))
-        #cv2.imshow(frame[])
-        print (min_x,min_y,max_x,max_y)
+        #print (min_x,min_y,max_x,max_y)
 
         #Crop the region of interest here:
         #TODO: use the scientific theorem provided by the paper:
         #https://arxiv.org/pdf/1801.01430.pdf
         #Decide on how to put the threshold
-        cv2.imwrite("cropped" + str(count) + ".jpg",frame[min_y-20:max_y+20,min_x-20:max_y+20])
+        #
+        #cv2.imwrite("cropped" + str(count) + ".jpg",frame[min_y-20:max_y+20,min_x-20:max_y+20])
         count+=1
 
         # Select good points
@@ -86,7 +81,7 @@ def lucas_kanade_method(video_path):
         # Display the demo
         img = cv2.add(frame, mask)
         cv2.imshow("frame", img)
-        cv2.imwrite("frame"+ str(count)+".jpg",frame)
+        #cv2.imwrite("frame"+ str(count)+".jpg",frame)
         k = cv2.waitKey(25) & 0xFF
         if k == 27:
             break
