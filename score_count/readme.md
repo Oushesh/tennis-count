@@ -1,31 +1,7 @@
-### Papers and Approach:
-    * https://arxiv.org/pdf/1801.01430.pdf
-    *
-    * Temporarily segmenting out the rallies. (DONE)
-    * Scorecard & Score Extraction (OCR Problem)
-    * OCR used: Google Tesseract (pytesseract)
-    *
-
-### Installation Guideline
-    * tesseract installation properly:
-      * https://medium.com/@ahmedbr/how-to-implement-pytesseract-properly-d6e2c2bc6dda
-## Current Pipeline:
-   * Deep Learning Based
-        * Pass in TextFuseNet:
-    2) OpenCV OCR + Tesseract Engine: https://www.pyimagesearch.com/2018/09/17/opencv-ocr-and-text-recognition-with-tesseract/
-
-    * Pypi: https://github.com/madmaze/pytesseract
-    * https://pypi.org/project/pytextractor/33
-
-    * Wild-OCR: https://github.com/oezguensi/wild-OCR
-    * Rally Segmentation: Court detection (DONE already)
-    * Tennis Video --> Court (Yes or No)
-    * Scoreboard Extraction: Optical Flow Constant Objects
-    * TODO: Read: https://cdn.iiit.ac.in/cdn/cvit.iiit.ac.in/images/Thesis/MS/Anurag_Ghosh/Anurag_MS_Thesis.pdf
-    * Optical Flow: https://developer.nvidia.com/blog/opencv-optical-flow-algorithms-with-nvidia-turing-gpus/
-    * Tested Lucas Kanade Flow method.
-    * Now testing the other pyramid approaches.
-    * Mention optimisation with Nvidia Cuda implementation: https://developer.nvidia.com/blog/opencv-optical-flow-algorithms-with-nvidia-turing-gpus/
+## Methodologies
+   * Video Scene Classification
+   * Scoreboard Extraction
+   * ocr
 
 ## Optimisation and Inference:
   * Video Scene Classification:</br>
@@ -151,8 +127,12 @@
    * https://github.com/gchlebus/tennis-court-detection
    * https://github.com/vishaltiwari/bmvc-tennis-analytics
    * https://arxiv.org/abs/1704.03155#:~:text=The%20pipeline%20directly%20predicts%20words,with%20a%20single%20neural%20network.
+   * https://cdn.iiit.ac.in/cdn/cvit.iiit.ac.in/images/Thesis/MS/Anurag_Ghosh/Anurag_MS_Thesis.pdf
 
 ## Installation
    * pip install: pip install opencv-contrib-python
    * Install the requirements.txt --> pip install -r requirements.txt
    * conda env installation. python 3.6
+   * tesseract installation properly:
+     https://medium.com/@ahmedbr/how-to-implement-pytesseract-properly-d6e2c2bc6dda
+     Be aware of the binaries, then install pytesseract
