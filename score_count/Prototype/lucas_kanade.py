@@ -4,10 +4,6 @@ stationary regions
 https://learnopencv.com/optical-flow-in-opencv/
 https://developer.nvidia.com/blog/opencv-optical-flow-algorithms-with-nvidia-turing-gpus/
 
-We are going to use the optical Flow algorithms (DONE Today) --> Find the pixels
-or region that are not moving -->
-
-First try: optical here
 '''
 import cv2
 import numpy as np
