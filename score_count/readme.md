@@ -30,7 +30,11 @@
 
 
   * Scorecard Extraction
-    * 1. Optical Flow + Detector </br>
+    * 1. Since the scoreboard is sharp focussed: one can use Edge detector,
+         then use a normalised temporal sum because the scoreboard stays constant
+         in most frames. Subtract the gradient from normalised gradient to get
+        the good region.     
+    * 2. Optical Flow + Detector </br>
     When one analyzes the video, one sees that the camera moves smoothly besides the commercials, whereas the scoreboard flashes in but mostly stays stable. </br>
     The idea thus is to use the Optical Flow to perform segmentation of the scoreboard.
     Find the vectors for which the optical flow is close to zero.  </br>
@@ -99,6 +103,9 @@
         * Even if we don't have perfect scoreboard detection, the list of
           players in Tennis is finite. So build a dictionary and search if the
           detected player game is inside the dictionary. (Sanity Check)
+
+        * Score also can be further refined over time. Score never goes -ve
+          and is among {0,15,30,40}.
 
         * THUS:
           * player is detected: {Federer, Basilashvili} & scores as well.
